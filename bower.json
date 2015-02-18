@@ -1,0 +1,20 @@
+{
+    "name": "base",
+    "version": "1.0.0",
+    "description": "Laravel-Base bower packages",
+    "main": "bower.json",
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "public/components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+    },
+    "resolutions": {
+        "jquery": "2.1.1"
+    }
+}
