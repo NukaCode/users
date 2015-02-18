@@ -24,13 +24,5 @@
         "psr-4":    {
             "NukaCode\\Users\\": "src/NukaCode/Users"
         }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "php artisan nuka:version"
-        ],
-        "post-update-cmd": [
-            "php artisan nuka:version"
-        ]
     }
 }
