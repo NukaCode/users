@@ -2,8 +2,6 @@
 
 trait Role {
 
-    abstract public function belongsTo($related, $foreignKey = null, $otherKey = null, $relation = null);
-
     public function action()
     {
         return $this->belongsTo('NukaCode\Users\Models\User\Permission\Action', 'action_id');
@@ -13,4 +11,4 @@ trait Role {
     {
         return $this->belongsTo('NukaCode\Users\Models\User\Permission\Role', 'role_id');
     }
-} 
+}

@@ -2,8 +2,6 @@
 
 trait User {
 
-    abstract public function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null);
-
     public function roles()
     {
         return $this->belongsToMany('NukaCode\Users\Models\User\Permission\Role', 'role_users', 'user_id', 'role_id');

@@ -1,6 +1,8 @@
 <?php namespace NukaCode\Users\Models;
 
-use Auth, Session, Str;
+use Auth;
+use Session;
+use Str;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Hash;
