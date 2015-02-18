@@ -86,4 +86,4 @@ class RoleRepository extends BaseRepository {
             return false;
         }
     }
-} 
+}

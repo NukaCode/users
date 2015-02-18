@@ -14,4 +14,4 @@ class Role extends BaseRepository {
     {
         $this->model = $role;
     }
-} 
+}

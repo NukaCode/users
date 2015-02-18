@@ -71,4 +71,4 @@ class PreferenceRepository extends BaseRepository {
             $this->save();
         }
     }
-} 
+}
