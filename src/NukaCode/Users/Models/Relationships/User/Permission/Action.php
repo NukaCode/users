@@ -8,4 +8,4 @@ trait Action {
     {
         return $this->belongsToMany('NukaCode\Users\Models\User\Permission\Role', 'action_roles', 'action_id', 'role_id');
     }
-} 
+}

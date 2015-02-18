@@ -8,4 +8,4 @@ trait Preference {
     {
         return $this->belongsToMany('NukaCode\Users\Models\User', 'preference_users', 'user_id', 'preference_id');
     }
-} 
+}

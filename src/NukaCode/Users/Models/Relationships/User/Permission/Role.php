@@ -13,4 +13,4 @@ trait Role {
     {
         return $this->belongsToMany('NukaCode\Users\Models\User', 'role_users', 'role_id', 'user_id');
     }
-} 
+}

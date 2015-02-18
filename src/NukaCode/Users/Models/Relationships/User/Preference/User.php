@@ -13,4 +13,4 @@ trait User {
     {
         return $this->belongsTo('NukaCode\Users\Models\User\Preference', 'preference_id');
     }
-} 
+}

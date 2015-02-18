@@ -43,5 +43,4 @@ class ActionController extends \BaseController {
         // Send the response
         return $this->ajax->sendResponse();
     }
-
-} 
+}
