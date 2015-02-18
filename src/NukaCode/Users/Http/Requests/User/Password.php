@@ -29,5 +29,4 @@ class Password extends BaseRequest {
     {
         return Auth::check();
     }
-
 }

@@ -2,6 +2,8 @@
 
 trait Role {
 
+    abstract public function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null);
+
     public function actions()
     {
         return $this->belongsToMany('NukaCode\Users\Models\User\Permission\Action', 'action_roles', 'role_id', 'action_id');

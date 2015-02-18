@@ -1,8 +1,8 @@
 <?php namespace NukaCode\Users\Models\Relationships;
 
-use User_Permission_Role, User_Preference;
-
 trait User {
+
+    abstract public function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null);
 
     public function roles()
     {

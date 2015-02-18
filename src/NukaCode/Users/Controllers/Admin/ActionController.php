@@ -7,70 +7,70 @@ use NukaCode\Users\Models\User\Permission\Role;
 
 class ActionController extends AdminController {
 
-	/**
-	 * @var \User
-	 */
-	private $action;
+    /**
+     * @var \User
+     */
+    private $action;
 
-	/**
-	 * @param Action $action
-	 *
-	 */
-	public function __construct(Action $action)
-	{
-		parent::__construct();
+    /**
+     * @param Action $action
+     *
+     */
+    public function __construct(Action $action)
+    {
+        parent::__construct();
 
-		$this->action = $action;
-	}
+        $this->action = $action;
+    }
 
-	public function index()
-	{
-		$actions = $this->action->paginate(10);
+    public function index()
+    {
+        $actions = $this->action->paginate(10);
 
-		$this->setViewData(compact('actions'));
-	}
+        $this->setViewData(compact('actions'));
+    }
 
-	public function getEdit(Role $role, $id)
-	{
-		$action = $this->action->find($id);
-		$roles  = $role->orderByNameAsc()->get()->toSelectArray(false, 'id', 'fullName');
+    public function getEdit(Role $role, $id)
+    {
+        $action = $this->action->find($id);
+        $roles  = $role->orderByNameAsc()->get()->toSelectArray(false, 'id', 'fullName');
 
-		$this->setViewData(compact('action', 'roles'));
-	}
+        $this->setViewData(compact('action', 'roles'));
+    }
 
-	public function postEdit(EditAction $request, $id)
-	{
-		// Update the user
-		$action = $this->action->find($request->only('id'));
-		$action->update($request->except('roles'));
-		$action->setRoles($request->get('roles'));
+    public function postEdit(EditAction $request, $id)
+    {
+        // Update the user
+        $action = $this->action->find($request->only('id'));
+        $action->update($request->except('roles'));
+        $action->setRoles($request->get('roles'));
 
-		// Send the response
-		return \Redirect::route('admin.user.action.index')->with('message', 'Action updated.');
-	}
+        // Send the response
+        return \Redirect::route('admin.user.action.index')->with('message', 'Action updated.');
+    }
 
-	public function getCreate(Role $role)
-	{
-		$roles = $role->orderByNameAsc()->get()->toSelectArray(false, 'id', 'fullName');
+    public function getCreate(Role $role)
+    {
+        $roles = $role->orderByNameAsc()->get()->toSelectArray(false, 'id', 'fullName');
 
-		$this->setViewData(compact('roles'));
-	}
+        $this->setViewData(compact('roles'));
+    }
 
-	public function postCreate(EditAction $request)
-	{
-		// Create the Action
-		$action = $this->action->create($request->except('roles'));
-		$action->setRoles($request->get('roles'));
+    public function postCreate(EditAction $request)
+    {
+        // Create the Action
+        $action = $this->action->create($request->except('roles'));
+        $action->setRoles($request->get('roles'));
 
-		// Send the response
-		return \Redirect::route('admin.user.action.index')->with('message', 'Action created.');
-	}
+        // Send the response
+        return \Redirect::route('admin.user.action.index')->with('message', 'Action created.');
+    }
 
-	public function getDelete($id)
-	{
-		$action = $this->action->find($id);
-		$action->delete();
+    public function getDelete($id)
+    {
+        $action = $this->action->find($id);
+        $action->delete();
 
-		return \Redirect::route('admin.user.action.index')->with('message', 'Action deleted.');
-	}
+        return \Redirect::route('admin.user.action.index')->with('message', 'Action deleted.');
+    }
 }

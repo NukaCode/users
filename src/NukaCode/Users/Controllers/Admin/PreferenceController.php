@@ -6,62 +6,64 @@ use NukaCode\Users\Models\User\Preference;
 
 class PreferenceController extends AdminController {
 
-	/**
-	 * @var Preference
-	 */
-	private $preference;
+    /**
+     * @var Preference
+     */
+    private $preference;
 
-	/**
-	 * @param Preference $preference
-	 *
-	 */
-	public function __construct(Preference $preference)
-	{
-		parent::__construct();
+    /**
+     * @param Preference $preference
+     *
+     */
+    public function __construct(Preference $preference)
+    {
+        parent::__construct();
 
-		$this->preference = $preference;
-	}
+        $this->preference = $preference;
+    }
 
-	public function index()
-	{
-		$preferences = $this->preference->paginate(10);
+    public function index()
+    {
+        $preferences = $this->preference->paginate(10);
 
-		$this->setViewData(compact('preferences'));
-	}
+        $this->setViewData(compact('preferences'));
+    }
 
-	public function getEdit($id)
-	{
-		$preference = $this->preference->find($id);
+    public function getEdit($id)
+    {
+        $preference = $this->preference->find($id);
 
-		$this->setViewData(compact('preference'));
-	}
+        $this->setViewData(compact('preference'));
+    }
 
-	public function postEdit(EditPreference $request, $id)
-	{
-		// Update the user
-		$preference = $this->preference->find($request->only('id'));
-		$preference->update($request->all());
+    public function postEdit(EditPreference $request, $id)
+    {
+        // Update the user
+        $preference = $this->preference->find($request->only('id'));
+        $preference->update($request->all());
 
-		// Send the response
-		return \Redirect::route('admin.user.preference.index')->with('message', 'Preference updated.');
-	}
+        // Send the response
+        return \Redirect::route('admin.user.preference.index')->with('message', 'Preference updated.');
+    }
 
-	public function getCreate()	{}
+    public function getCreate()
+    {
+    }
 
-	public function postCreate(EditPreference $request)
-	{
-		// Create the Preference
-		$preference = $this->preference->create($request->all());
+    public function postCreate(EditPreference $request)
+    {
+        // Create the Preference
+        $this->preference->create($request->all());
 
-		// Send the response
-		return \Redirect::route('admin.user.preference.index')->with('message', 'Preference created.');
-	}
+        // Send the response
+        return \Redirect::route('admin.user.preference.index')->with('message', 'Preference created.');
+    }
 
-	public function getDelete($id)
-	{
-		$preference = $this->preference->find($id);
-		$preference->delete();
+    public function getDelete($id)
+    {
+        $preference = $this->preference->find($id);
+        $preference->delete();
 
-		return \Redirect::route('admin.user.preference.index')->with('message', 'Preference deleted.');
-	}
+        return \Redirect::route('admin.user.preference.index')->with('message', 'Preference deleted.');
+    }
 }

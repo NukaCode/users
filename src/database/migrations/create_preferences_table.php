@@ -34,5 +34,4 @@ class CreatePreferencesTable extends Migration {
     {
         Schema::drop('preferences');
     }
-
 }

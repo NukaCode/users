@@ -2,6 +2,11 @@
 
 use NukaCode\Core\Presenters\BasePresenter;
 
+/**
+ * @property string $group
+ * @property string $name
+ * @property \NukaCode\Core\Collection $actions
+ */
 class RolePresenter extends BasePresenter {
 
     public function fullname()

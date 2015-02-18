@@ -2,6 +2,9 @@
 
 use NukaCode\Core\Presenters\BasePresenter;
 
+/**
+ * @property \NukaCode\Core\Collection $roles
+ */
 class ActionPresenter extends BasePresenter {
 
     public function roleList()
@@ -12,4 +15,4 @@ class ActionPresenter extends BasePresenter {
 
         return 'None';
     }
-} 
+}

@@ -30,5 +30,4 @@ class CreateActionsTable extends Migration {
     {
         Schema::drop('actions');
     }
-
 }

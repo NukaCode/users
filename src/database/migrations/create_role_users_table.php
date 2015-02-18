@@ -12,12 +12,12 @@ class CreateRoleUsersTable extends Migration {
      */
     public function up()
     {
-        Schema::create('role_users', function(Blueprint $table) {
+        Schema::create('role_users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->index();
-			$table->string('user_id', 10)->index();
+            $table->string('user_id', 10)->index();
             $table->timestamps();
-            $table->unique(array('role_id', 'user_id'));
+            $table->unique(['role_id', 'user_id']);
         });
     }
 
@@ -30,5 +30,4 @@ class CreateRoleUsersTable extends Migration {
     {
         Schema::drop('role_users');
     }
-
 }

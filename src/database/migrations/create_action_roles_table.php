@@ -17,7 +17,7 @@ class CreateActionRolesTable extends Migration {
             $table->integer('action_id')->index();
             $table->integer('role_id')->index();
             $table->timestamps();
-            $table->unique(array('action_id', 'role_id'));
+            $table->unique(['action_id', 'role_id']);
         });
     }
 
@@ -30,5 +30,4 @@ class CreateActionRolesTable extends Migration {
     {
         Schema::drop('action_roles');
     }
-
 }
