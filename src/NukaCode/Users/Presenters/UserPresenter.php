@@ -40,22 +40,16 @@ class UserPresenter extends BasePresenter {
         switch ($preference) {
             case 'top-left':
                 return 'messenger-on-top messenger-on-left';
-            break;
             case 'top':
                 return 'messenger-on-top';
-            break;
             case 'top-right':
                 return 'messenger-on-top messenger-on-right';
-            break;
             case 'bottom-right':
                 return 'messenger-on-bottom messenger-on-right';
-            break;
             case 'bottom':
                 return 'messenger-on-bottom';
-            break;
             case 'bottom-left':
                 return 'messenger-on-bottom messenger-on-left';
-            break;
         }
     }
 

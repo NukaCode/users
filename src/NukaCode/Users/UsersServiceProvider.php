@@ -36,7 +36,7 @@ class UsersServiceProvider extends BaseServiceProvider {
      */
     protected function shareWithApp()
     {
-        $this->app['users'] = $this->app->share(function ($app) {
+        $this->app['users'] = $this->app->share(function () {
             return true;
         });
     }
@@ -84,7 +84,7 @@ class UsersServiceProvider extends BaseServiceProvider {
         $loader     = AliasLoader::getInstance();
 
         foreach ($aliases as $alias => $class) {
-            if (! is_null($appAliases)) {
+            if ($appAliases !== null) {
                 if (! in_array($alias, $appAliases)) {
                     $loader->alias($alias, $class);
                 }
@@ -92,8 +92,6 @@ class UsersServiceProvider extends BaseServiceProvider {
                 $loader->alias($alias, $class);
             }
         }
-
-
     }
 
     public function registerArtisanCommands()
@@ -110,5 +108,4 @@ class UsersServiceProvider extends BaseServiceProvider {
     {
         return ['users'];
     }
-
 }

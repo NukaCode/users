@@ -33,5 +33,4 @@ class RegistrationService {
 
         return $result;
     }
-
 }
