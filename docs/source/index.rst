@@ -6,18 +6,18 @@ preferences.
 ======
 Badges
 ======
-.. image:: https://scrutinizer-ci.com/g/NukaCode/core/badges/quality-score.png?b=Laravel5
-    :target: https://scrutinizer-ci.com/g/NukaCode/core/?branch=Laravel5
-.. image:: https://scrutinizer-ci.com/g/NukaCode/core/badges/coverage.png?b=Laravel5
-    :target: https://scrutinizer-ci.com/g/NukaCode/core/?branch=Laravel5
-.. image:: https://travis-ci.org/NukaCode/core.svg?branch=Laravel5
-    :target: https://travis-ci.org/NukaCode/core
-.. image:: https://poser.pugx.org/nukacode/core/v/stable.svg
-    :target: https://packagist.org/packages/nukacode/core
-.. image:: https://poser.pugx.org/nukacode/core/downloads.svg
-    :target: https://packagist.org/packages/nukacode/core
-.. image:: https://poser.pugx.org/nukacode/core/license.svg
-    :target: https://packagist.org/packages/nukacode/core
+.. image:: https://scrutinizer-ci.com/g/NukaCode/users/badges/quality-score.png?b=master
+    :target: https://scrutinizer-ci.com/g/NukaCode/users/?branch=master
+.. image:: https://scrutinizer-ci.com/g/NukaCode/users/badges/coverage.png?b=master
+    :target: https://scrutinizer-ci.com/g/NukaCode/users/?branch=master
+.. image:: https://travis-ci.org/NukaCode/users.svg?branch=master
+    :target: https://travis-ci.org/NukaCode/users
+.. image:: https://poser.pugx.org/nukacode/users/v/stable.svg
+    :target: https://packagist.org/packages/nukacode/users
+.. image:: https://poser.pugx.org/nukacode/users/downloads.svg
+    :target: https://packagist.org/packages/nukacode/users
+.. image:: https://poser.pugx.org/nukacode/users/license.svg
+    :target: https://packagist.org/packages/nukacode/users
 =====
 
 Links
