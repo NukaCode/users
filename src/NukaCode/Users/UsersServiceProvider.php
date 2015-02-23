@@ -13,7 +13,11 @@ class UsersServiceProvider extends BaseServiceProvider {
      */
     protected $defer = false;
 
-    const version = '1.0.0';
+    const NAME = 'users';
+
+    const VERSION = '1.0.0';
+
+    const DOCS = 'front-end-bootstrap';
 
     /**
      * Register the service provider.

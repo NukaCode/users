@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-            @each('admin.users.user.partials.row', $users, 'user', 'raw|No users exist.')
+            @each('admin.users.user.partials.row', $users, 'user', 'raw|<tr><td colspan="4">No users exist.</td></tr>')
         </tbody>
     </table>
 </div>

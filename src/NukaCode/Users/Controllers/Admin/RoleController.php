@@ -1,6 +1,6 @@
 <?php namespace NukaCode\Users\Controllers\Admin;
 
-use NukaCode\Core\Controllers\AdminController;
+use NukaCode\Admin\Controllers\AdminController;
 use NukaCode\Users\Http\Requests\Admin\Edit\Role as EditRole;
 use NukaCode\Users\Models\User\Permission\Action;
 use NukaCode\Users\Models\User\Permission\Role;

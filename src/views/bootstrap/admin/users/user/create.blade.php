@@ -6,13 +6,25 @@
         The password will be set to changeme.
     </div>
     <div class="panel-body">
-        {{ bForm::open(false) }}
-            {{ bForm::text('username', null, null, 'Username') }}
-            {{ bForm::email('email', null, null, 'Email') }}
-            {{ bForm::text('firstName', null, null, 'First Name') }}
-            {{ bForm::text('lastName', null, null, 'Last Name') }}
-            {{ bForm::select2('roles[]', $roles, null, ['multiple' => 'multiple'], 'Roles', 'Select Roles') }}
-            {{ bForm::submit('Save User') }}
-        {{ bForm::close() }}
+        {{ Form::open() }}
+            {{ Form::groupOpen() }}
+                {{ Form::text('username', null, null, 'Username') }}
+            {{ Form::groupClose() }}
+            {{ Form::groupOpen() }}
+                {{ Form::email('email', null, null, 'Email') }}
+            {{ Form::groupClose() }}
+            {{ Form::groupOpen() }}
+                {{ Form::text('firstName', null, null, 'First Name') }}
+            {{ Form::groupClose() }}
+            {{ Form::groupOpen() }}
+                {{ Form::text('lastName', null, null, 'Last Name') }}
+            {{ Form::groupClose() }}
+            {{ Form::groupOpen() }}
+                {{ Form::select2('roles[]', $roles, null, ['multiple' => 'multiple'], 'Roles', 'Select Roles') }}
+            {{ Form::groupClose() }}
+            {{ Form::offsetGroupOpen() }}
+                {{ Form::submit('Save User', ['class' => 'btn btn-primary']) }}
+            {{ Form::offsetGroupClose() }}
+        {{ Form::close() }}
     </div>
 </div>

@@ -1,6 +1,6 @@
 <?php namespace NukaCode\Users\Controllers\Admin;
 
-use NukaCode\Core\Controllers\AdminController;
+use NukaCode\Admin\Controllers\AdminController;
 use NukaCode\Users\Http\Requests\Admin\Edit\Preference as EditPreference;
 use NukaCode\Users\Models\User\Preference;
 

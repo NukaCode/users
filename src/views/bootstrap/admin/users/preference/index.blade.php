@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @each('admin.users.preference.partials.row', $preferences, 'preference', 'raw|No preferences exist.')
+            @each('admin.users.preference.partials.row', $preferences, 'preference', 'raw|<tr><td colspan="4">No preferences exist.</td></tr>')
         </tbody>
     </table>
 </div>

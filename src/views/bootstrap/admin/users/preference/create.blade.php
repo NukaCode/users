@@ -3,15 +3,38 @@
         <div class="panel-title">Create New Preference</div>
     </div>
     <div class="panel-body">
-        {{ bForm::open(false) }}
-            {{ bForm::text('name', null, null, 'Name') }}
-            {{ bForm::text('keyName', null, null, 'Key Name') }}
-            {{ bForm::textarea('description', null, ['style' => 'height: 100px'], 'Description') }}
-            {{ bForm::text('value', null, null, 'Value') }}
-            {{ bForm::text('default', null, null, 'Default') }}
-            {{ bForm::select('display', ['select' => 'Select', 'text' => 'Text', 'textarea' => 'Text Area', 'radio' => 'Radio'], 'select', null, 'Display') }}
-            {{ bForm::select('hiddenFlag', ['No', 'Yes'], 0, null, 'Hidden?') }}
-            {{ bForm::submit('Save Preference') }}
-        {{ bForm::close() }}
+        {{ Form::open() }}
+            {{ Form::groupOpen() }}
+                {{ Form::text('name', null, null, 'Name') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::text('keyName', null, null, 'Key Name') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::textarea('description', null, ['style' => 'height: 100px'], 'Description') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::text('value', null, null, 'Value') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::text('default', null, null, 'Default') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::select('display', ['select' => 'Select', 'text' => 'Text'], 'select', null, 'Display') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::select('hiddenFlag', ['No', 'Yes'], 0, null, 'Hidden?') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::offsetGroupOpen() }}
+                {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
+            {{ Form::offsetGroupClose() }}
+        {{ Form::close() }}
     </div>
 </div>

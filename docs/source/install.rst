@@ -35,6 +35,19 @@ If you would like to use the included routes, add the following to your ``app/Ht
 
 ``include_once(base_path() .'/vendor/nukacode/users/src/routes.php');``
 
+Middleware
+----------
+Included are two middlewares for helping with route protection.  You will need to add them to your ``app/Http/Kernel.php``
+file.
+
+.. code::
+
+    protected $routeMiddleware = [
+        // Existing middlewares
+        'can'        => 'NukaCode\Users\Http\Middleware\Permission',
+        'is'         => 'NukaCode\Users\Http\Middleware\Role',
+    ];
+
 Menu
 -------
 This step is completely optional.  But here are some common additions to the menu located in ``app/Http/Controllers/BaseController``

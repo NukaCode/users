@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @each('admin.users.role.partials.row', $roles, 'role', 'raw|No roles exist.')
+            @each('admin.users.role.partials.row', $roles, 'role', 'raw|<tr><td colspan="5">No roles exist.</td></tr>')
         </tbody>
     </table>
 </div>

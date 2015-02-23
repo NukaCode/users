@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @each('admin.users.action.partials.row', $actions, 'action', 'raw|No actions exist.')
+            @each('admin.users.action.partials.row', $actions, 'action', 'raw|<tr><td colspan="4">No actions exist.</td></tr>')
         </tbody>
     </table>
 </div>

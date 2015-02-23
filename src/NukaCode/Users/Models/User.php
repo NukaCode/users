@@ -12,6 +12,7 @@ use NukaCode\Users\Models\User\Preference\User as UserPreferenceUser;
 use NukaCode\Users\Models\User\Preference\User as PreferenceUser;
 
 abstract class User extends \BaseModel {
+
     /********************************************************************
      * Traits
      *******************************************************************/
@@ -316,7 +317,7 @@ abstract class User extends \BaseModel {
      */
     public function checkPermission($actions, $matchAll = false)
     {
-        if ($this->roles->contains(getRoleId('developer'))) {
+        if ($this->roles->contains(\Config::get('nukacode-user.main.developer'))) {
             return true;
         }
 
@@ -358,6 +359,10 @@ abstract class User extends \BaseModel {
      */
     public function is($roles)
     {
+        if ($this->roles->contains(\Config::get('nukacode-user.main.developer'))) {
+            return true;
+        }
+
         if ($this->roles->count() > 0) {
             // If any role is not in the user's roles, fail
             return in_array($roles, $this->roles->keyName->toArray());

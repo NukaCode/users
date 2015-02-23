@@ -1,11 +1,11 @@
 <?php
 
 Route::group(['namespace' => 'NukaCode\Users\Controllers'], function () {
-    Route::get('/login', [
+    Route::get('login', [
         'as'   => 'login',
         'uses' => 'SessionController@getLogin'
     ]);
-    Route::post('/login', [
+    Route::post('login', [
         'as'   => 'login',
         'uses' => 'SessionController@postLogin'
     ]);
@@ -21,15 +21,15 @@ Route::group(['namespace' => 'NukaCode\Users\Controllers'], function () {
             return redirect()->route('home')->with('message', 'You have successfully logged out.');
         }
     ]);
-    Route::get('/register', [
+    Route::get('register', [
         'as'   => 'register',
         'uses' => 'SessionController@getRegister'
     ]);
-    Route::post('/register', [
+    Route::post('register', [
         'as'   => 'register',
         'uses' => 'SessionController@postRegister'
     ]);
-    Route::get('/memberlist', [
+    Route::get('memberlist', [
         'as'   => 'memberlist',
         'uses' => 'UserController@memberlist'
     ]);
@@ -43,41 +43,43 @@ Route::group(['namespace' => 'NukaCode\Users\Controllers'], function () {
             'as'   => 'user.view',
             'uses' => 'UserController@view'
         ]);
-        Route::get('profile', [
-            'as'   => 'user.profile',
-            'uses' => 'UserController@profile'
-        ]);
-        Route::get('personal-information', [
-            'as'   => 'user.personal.information',
-            'uses' => 'UserController@personalInformation'
-        ]);
-        Route::post('personal-information', [
-            'as'   => 'user.personal.information',
-            'uses' => 'UserController@postPersonalInformation'
-        ]);
-        Route::get('change-password', [
-            'as'   => 'user.password.change',
-            'uses' => 'UserController@changePassword'
-        ]);
-        Route::post('change-password', [
-            'as'   => 'user.password.change',
-            'uses' => 'UserController@postChangePassword'
-        ]);
-        Route::get('preferences', [
-            'as'   => 'user.preferences',
-            'uses' => 'UserController@preferences'
-        ]);
-        Route::post('preferences', [
-            'as'   => 'user.preferences',
-            'uses' => 'UserController@postPreferences'
-        ]);
+        Route::group(['middleware' => 'auth'], function () {
+            Route::get('profile', [
+                'as'   => 'user.profile',
+                'uses' => 'UserController@profile'
+            ]);
+            Route::get('personal-information', [
+                'as'   => 'user.personal.information',
+                'uses' => 'UserController@personalInformation'
+            ]);
+            Route::post('personal-information', [
+                'as'   => 'user.personal.information',
+                'uses' => 'UserController@postPersonalInformation'
+            ]);
+            Route::get('change-password', [
+                'as'   => 'user.password.change',
+                'uses' => 'UserController@changePassword'
+            ]);
+            Route::post('change-password', [
+                'as'   => 'user.password.change',
+                'uses' => 'UserController@postChangePassword'
+            ]);
+            Route::get('preferences', [
+                'as'   => 'user.preferences',
+                'uses' => 'UserController@preferences'
+            ]);
+            Route::post('preferences', [
+                'as'   => 'user.preferences',
+                'uses' => 'UserController@postPreferences'
+            ]);
+        });
     });
     /*
     |--------------------------------------------------------------------------
     | Admin
     |--------------------------------------------------------------------------
     */
-    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['is'], 'roles' => ['ADMIN', 'DEVELOPER']], function () {
         /*
         |--------------------------------------------------------------------------
         | User Admin

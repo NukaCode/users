@@ -3,16 +3,42 @@
         <div class="panel-title">Edit {{ $preference->present()->name }}</div>
     </div>
     <div class="panel-body">
-        {{ bForm::open(false) }}
-            {{ bForm::text('id', $preference->id, ['readonly' => 'readonly'], 'Id') }}
-            {{ bForm::text('name', $preference->name, null, 'Name') }}
-            {{ bForm::text('keyName', $preference->keyName, null, 'Key Name') }}
-            {{ bForm::textarea('description', $preference->description, ['style' => 'height: 100px'], 'Description') }}
-            {{ bForm::text('value', $preference->value, null, 'Value') }}
-            {{ bForm::text('default', $preference->default, null, 'Default') }}
-            {{ bForm::select('display', ['select' => 'Select', 'text' => 'Text', 'textarea' => 'Text Area', 'radio' => 'Radio'], $preference->display, null, 'Display') }}
-            {{ bForm::select('hiddenFlag', ['No', 'Yes'], $preference->hiddenFlag, null, 'Hidden?') }}
-            {{ bForm::submit('Save Changes') }}
-        {{ bForm::close() }}
+        {{ Form::open() }}
+            {{ Form::groupOpen() }}
+                {{ Form::text('id', $preference->id, ['readonly' => 'readonly'], 'Id') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::text('name', $preference->name, null, 'Name') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::text('keyName', $preference->keyName, null, 'Key Name') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::textarea('description', $preference->description, ['style' => 'height: 100px'], 'Description') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::text('value', $preference->value, null, 'Value') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::text('default', $preference->default, null, 'Default') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::select('display', ['select' => 'Select', 'text' => 'Text'], $preference->display, null, 'Display') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::groupOpen() }}
+                {{ Form::select('hiddenFlag', ['No', 'Yes'], $preference->hiddenFlag, null, 'Hidden?') }}
+            {{ Form::groupClose() }}
+
+            {{ Form::offsetGroupOpen() }}
+                {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
+            {{ Form::offsetGroupClose() }}
+        {{ Form::close() }}
     </div>
 </div>
