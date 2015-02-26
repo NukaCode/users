@@ -35,6 +35,9 @@ class Permission {
      */
     public function handle($request, Closure $next)
     {
+        if ($this->auth->guest()) {
+            return new RedirectResponse(route('login'));
+        }
         $user  = $this->auth->user();
         $route = $request->route();
 
