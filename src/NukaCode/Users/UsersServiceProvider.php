@@ -15,7 +15,7 @@ class UsersServiceProvider extends BaseServiceProvider {
 
     const NAME = 'users';
 
-    const VERSION = '1.0.1';
+    const VERSION = '1.0.2';
 
     const DOCS = 'front-end-bootstrap';
 
