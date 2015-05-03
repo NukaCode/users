@@ -197,4 +197,22 @@ class UserPresenter extends BasePresenter {
 
         return implode('&nbsp;&nbsp;', $status);
     }
+<<<<<<< HEAD
+=======
+
+    public function onlineMaterialize($flip = false)
+    {
+        if ($this->lastActive >= date('Y-m-d H:i:s', strtotime('-15 minutes'))) {
+            $status = ['<i class="green-text fa fa-circle"></i>', 'Online'];
+        } else {
+            $status = ['<i class="red-text fa fa-circle"></i>', 'Offline'];
+        }
+
+        if ($flip) {
+            return implode('&nbsp;&nbsp;', array_reverse($status));
+        }
+
+        return implode('&nbsp;&nbsp;', $status);
+    }
+>>>>>>> aa205ef16822fd1241f74457b8def259842790b8
 }
