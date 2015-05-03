@@ -1,0 +1,32 @@
+{
+    "name":        "nukacode/users",
+    "description": "Adds basic user functionality to a NukaCode site.",
+    "license":     "MIT",
+    "authors":     [
+        {
+            "name":  "Stygian",
+            "email": "stygian.warlock.v2@gmail.com"
+        },
+        {
+            "name":  "Riddles",
+            "email": "riddles@dev-toolbox.com"
+        }
+    ],
+    "require": {
+        "nukacode/core": "~2.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.1",
+        "henrikbjorn/phpspec-code-coverage": "~0.2"
+    },
+    "autoload":    {
+        "classmap": [
+            "src/database/migrations",
+            "src/database/seeds",
+            "src/views"
+        ],
+        "psr-4":    {
+            "NukaCode\\Users\\": "src/NukaCode/Users"
+        }
+    }
+}
