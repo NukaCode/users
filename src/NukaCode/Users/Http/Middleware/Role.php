@@ -35,12 +35,10 @@ class Role {
      */
     public function handle($request, Closure $next)
     {
-<<<<<<< HEAD
         if ($this->auth->guest()) {
             return new RedirectResponse(route('login'));
         }
-=======
->>>>>>> aa205ef16822fd1241f74457b8def259842790b8
+        
         $user  = $this->auth->user();
         $route = $request->route();
 
