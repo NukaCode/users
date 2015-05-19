@@ -197,8 +197,6 @@ class UserPresenter extends BasePresenter {
 
         return implode('&nbsp;&nbsp;', $status);
     }
-<<<<<<< HEAD
-=======
 
     public function onlineMaterialize($flip = false)
     {
@@ -214,5 +212,4 @@ class UserPresenter extends BasePresenter {
 
         return implode('&nbsp;&nbsp;', $status);
     }
->>>>>>> aa205ef16822fd1241f74457b8def259842790b8
 }
