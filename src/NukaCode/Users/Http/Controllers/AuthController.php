@@ -4,6 +4,8 @@ namespace NukaCode\Users\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
 use App\Models\User;
+use NukaCode\Users\Events\UserLoggedIn;
+use NukaCode\Users\Events\UserRegistered;
 use NukaCode\Users\Http\Requests\Login;
 use NukaCode\Users\Http\Requests\Registration;
 
@@ -34,6 +36,8 @@ class AuthController extends BaseController
 
         // Log in successful
         if (auth()->attempt($userData, $request->get('remember', false))) {
+            event(new UserLoggedIn(auth()->user()));
+
             return redirect()
                 ->intended('home')
                 ->with('message', 'You have been logged in.');
@@ -66,6 +70,8 @@ class AuthController extends BaseController
             $user->assignRole(config('nukacode-user.default'));
 
             auth()->login($user);
+
+            event(new UserRegistered(auth()->user()));
         } catch (\Exception $exception) {
             return redirect('auth.register')
                 ->with('errors', $exception->getMessage());

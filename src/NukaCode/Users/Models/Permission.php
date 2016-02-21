@@ -2,6 +2,8 @@
 
 namespace NukaCode\Users\Models;
 
+use App\Models\BaseModel;
+
 class Permission extends BaseModel
 {
     /**

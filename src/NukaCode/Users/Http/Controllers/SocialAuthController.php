@@ -6,6 +6,8 @@ use App\Http\Controllers\BaseController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use NukaCode\Users\Events\UserLoggedIn;
+use NukaCode\Users\Events\UserRegistered;
 
 class SocialAuthController extends BaseController
 {
@@ -60,6 +62,7 @@ class SocialAuthController extends BaseController
         }
 
         auth()->login($user, $request->get('remember', false));
+        event(new UserLoggedIn(auth()->user()));
 
         return redirect()
             ->intended('home')
@@ -89,6 +92,8 @@ class SocialAuthController extends BaseController
 
         $user = User::create($userDetails);
         $user->assignRole(config('nukacode-user.default'));
+
+        event(new UserRegistered(auth()->user()));
 
         return $user;
     }
