@@ -1,42 +1,27 @@
-<?php namespace NukaCode\Users\Models\User\Preference;
+<?php
 
-use NukaCode\Users\Models\Relationships\User\Preference\User as UserRelationshipsTrait;
+namespace NukaCode\Users\Models\User\Preference;
 
-class User extends \BaseModel {
-    /********************************************************************
-     * Traits
-     *******************************************************************/
-    use UserRelationshipsTrait;
+use App\Models\BaseModel;
 
-    /********************************************************************
-     * Declarations
-     *******************************************************************/
-
-    protected        $table    = 'preferences_users';
+class User extends BaseModel
+{
+    protected $table = 'preferences_users';
 
     protected static $observer = 'NukaCode\Users\Models\Observers\User\Preference\UserObserver';
 
-    /********************************************************************
-     * Validation rules
-     *******************************************************************/
-
-    /********************************************************************
-     * Scopes
-     *******************************************************************/
-
-    /********************************************************************
-     * Model Events
-     *******************************************************************/
-
-    /********************************************************************
-     * Getter and Setter methods
-     *******************************************************************/
-
-    /********************************************************************
-     * Extra Methods
-     *******************************************************************/
     public function validateValue()
     {
         return (preg_match('/' . $this->preference->value . '/', $this->value) == 1 ? true : false);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('NukaCode\Users\Models\User', 'user_id');
+    }
+
+    public function preference()
+    {
+        return $this->belongsTo('NukaCode\Users\Models\User\Preference', 'preference_id');
     }
 }

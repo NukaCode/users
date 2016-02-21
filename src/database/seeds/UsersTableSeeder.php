@@ -2,35 +2,34 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder {
+class UsersTableSeeder extends Seeder
+{
 
     public function run()
     {
         // Uncomment the below to wipe the table clean before populating
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $users = [
             [
-                'uniqueId'      => '2bHAJwWCX2',
-                'username'      => 'riddles',
-                'password'      => Hash::make('test'),
-                'firstName'     => 'Brandon',
-                'lastName'      => 'Hyde',
-                'status_id'     => '1',
-                'email'         => 'riddles@dev-toolbox.com',
-                'gravatarEmail' => 'riddles@dev-toolbox.com',
-                'created_at'    => date('Y-m-d H:i:s')
+                'username'   => 'riddles',
+                'password'   => bcrypt('test'),
+                'firstName'  => 'Brandon',
+                'lastName'   => 'Hyde',
+                'email'      => 'riddles@dev-toolbox.com',
+                'timezone'   => 'US/Central',
+                'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'uniqueId'      => 'bmeJBz10K2',
-                'username'      => 'Stygian',
-                'password'      => Hash::make('test'),
-                'firstName'     => 'Travis',
-                'lastName'      => 'Blasingame',
-                'status_id'     => '1',
-                'email'         => 'stygian.warlock.v2@gmail.com',
-                'gravatarEmail' => 'stygian.warlock.v2@gmail.com',
-                'created_at'    => date('Y-m-d H:i:s')
+                'username'   => 'Stygian',
+                'password'   => bcrypt('test'),
+                'firstName'  => 'Travis',
+                'lastName'   => 'Blasingame',
+                'email'      => 'stygian.warlock.v2@gmail.com',
+                'timezone'   => 'US/Central',
+                'created_at' => date('Y-m-d H:i:s'),
             ],
         ];
 

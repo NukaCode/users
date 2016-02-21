@@ -1,58 +1,44 @@
-<?php namespace NukaCode\Users\Models\User;
+<?php
 
-use NukaCode\Users\Models\Relationships\User\Preference as PreferenceRelationshipsTrait;
+namespace NukaCode\Users\Models\User;
 
-class Preference extends \BaseModel {
-	/********************************************************************
-	 * Traits
-	 *******************************************************************/
-	use PreferenceRelationshipsTrait;
+class Preference extends \BaseModel
+{
+    protected $presenter = 'NukaCode\Users\Presenters\User\PreferencePresenter';
 
-	/********************************************************************
-	 * Declarations
-	 *******************************************************************/
-	protected $presenter = 'NukaCode\Users\Presenters\User\PreferencePresenter';
+    protected $table = 'preferences';
 
-	protected $table     = 'preferences';
+    protected $fillable = [
+        'name',
+        'keyName',
+        'description',
+        'value',
+        'default',
+        'display',
+        'hiddenFlag',
+    ];
 
-	protected $fillable  = ['name', 'keyName', 'description', 'value', 'default', 'display', 'hiddenFlag'];
+    protected $rules = [
+        'name'    => 'required',
+        'value'   => 'required',
+        'default' => 'required',
+        'display' => 'required',
+    ];
 
-	/********************************************************************
-	 * Validation rules
-	 *******************************************************************/
+    public function getPreferenceOptionsArray()
+    {
+        $preferenceOptions = explode('|', $this->value);
+        $preferenceArray   = [];
 
-	protected $rules = [
-		'name'    => 'required',
-		'value'   => 'required',
-		'default' => 'required',
-		'display' => 'required',
-	];
+        foreach ($preferenceOptions as $preferenceOption) {
+            $preferenceArray[$preferenceOption] = ucwords($preferenceOption);
+        }
 
-	/********************************************************************
-	 * Scopes
-	 *******************************************************************/
+        return $preferenceArray;
+    }
 
-	/********************************************************************
-	 * Model events
-	 *******************************************************************/
-
-	/********************************************************************
-	 * Getter and Setter methods
-	 *******************************************************************/
-
-	/********************************************************************
-	 * Extra Methods
-	 *******************************************************************/
-
-	public function getPreferenceOptionsArray()
-	{
-		$preferenceOptions = explode('|', $this->value);
-		$preferenceArray   = [];
-
-		foreach ($preferenceOptions as $preferenceOption) {
-			$preferenceArray[$preferenceOption] = ucwords($preferenceOption);
-		}
-
-		return $preferenceArray;
-	}
+    public function users()
+    {
+        return $this->belongsToMany('NukaCode\Users\Models\User', 'preference_users', 'user_id', 'preference_id');
+    }
 }

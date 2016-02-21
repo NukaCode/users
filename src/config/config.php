@@ -2,60 +2,79 @@
 
 return [
 
-	/*
-	|--------------------------------------------------------------------------
-	| Quick Link
-	|--------------------------------------------------------------------------
-	|
-	| This is used to quickly find the ID for the main 4 role levels.  Set these
-	| to the ID of the role you want to fill that position.
-	|
-	*/
-	'main' => [
-		'guest'     => 1, // General read only user.  Very limited permissions.
-		'member'    => 2, // Normal user.
-		'admin'     => 3, // Access to control certain aspects of the site.
-		'developer' => 4 // Global access to everything the site offers.
-	],
+    /*
+    |--------------------------------------------------------------------------
+    | Default Role
+    |--------------------------------------------------------------------------
+    |
+    | When a user signs up, this is the role ID they will be automatically
+    | assigned to.
+    |
+    */
+    'default'           => 'guest',
 
-	/*
-	|--------------------------------------------------------------------------
-	| Database population
-	|--------------------------------------------------------------------------
-	|
-	| Create your roles for database seeding here.  They must have the following
-	| fields: group, name, keyName, description, priority
-	| Sensible defaults have been included for you.
-	|
-	*/
-	'roles' => [
-		[
-			'group' => 'Site',
-			'name' => 'Guest',
-			'keyName' => 'GUEST',
-			'description' => 'Gives limited read-only abilities in the site.',
-			'priority' => 1,
-		],
-		[
-			'group' => 'Site',
-			'name' => 'Member',
-			'keyName' => 'MEMBER',
-			'description' => 'Gives the ability to use all public features of the site.',
-			'priority' => 2,
-		],
-		[
-			'group' => 'Site',
-			'name' => 'Administrator',
-			'keyName' => 'ADMIN',
-			'description' => 'Grants access to control over the site and the ability to affect change.',
-			'priority' => 3,
-		],
-		[
-			'group' => 'Site',
-			'name' => 'Developer',
-			'keyName' => 'DEVELOPER',
-			'description' => 'Full access to the site and it\'s features.',
-			'priority' => 4,
-		],
-	]
+    /*
+    |--------------------------------------------------------------------------
+    | Social Authentication Details
+    |--------------------------------------------------------------------------
+    |
+    | If using social authentication, specify the driver being used here.  You
+    | can also specify any additional scopes or extras you need here.
+    | Setting the enable_Social flag to true will change the existing routes
+    | to their social counterparts.
+    |
+    */
+    'enable_social'     => false,
+    'social'            => [
+        'driver' => null,
+        'scopes' => [],
+        'extras' => [],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Allow super users
+    |--------------------------------------------------------------------------
+    |
+    | The users table has a super_flag built in.  When this is set to true any
+    | user with that flag will bypass all permission checks.  If you do not
+    | want to allow super users, set the below value to false.
+    |
+    */
+    'allow_super_users' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Database population
+    |--------------------------------------------------------------------------
+    |
+    | The below entries are used when running the acl seeder.  Anything set here
+    | will be set in the database when seeded.
+    |
+    */
+
+    'permission' => [
+        [
+            'name'  => 'administrate',
+            'label' => 'Administrate',
+        ],
+    ],
+
+    'roles' => [
+        [
+            'name'  => 'guest',
+            'label' => 'Guest',
+        ],
+        [
+            'name'  => 'admin',
+            'label' => 'Admin',
+        ],
+    ],
+
+    'permission_role' => [
+        [
+            'permission_id' => 1,
+            'role_id'       => 2,
+        ],
+    ],
 ];

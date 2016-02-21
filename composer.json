@@ -13,17 +13,12 @@
         }
     ],
     "require": {
-        "nukacode/core": "~2.0"
-    },
-    "require-dev": {
-        "phpspec/phpspec": "~2.1",
-        "henrikbjorn/phpspec-code-coverage": "~0.2"
+        "nukacode/core": "~2.2"
     },
     "autoload":    {
         "classmap": [
             "src/database/migrations",
-            "src/database/seeds",
-            "src/views"
+            "src/database/seeds"
         ],
         "psr-4":    {
             "NukaCode\\Users\\": "src/NukaCode/Users"

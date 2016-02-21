@@ -29,8 +29,6 @@ class UsersServiceProvider extends BaseServiceProvider {
         $this->shareWithApp();
         $this->setPublishGroups();
         $this->registerViews();
-        $this->registerAliases();
-        $this->registerArtisanCommands();
     }
 
     /**
@@ -57,6 +55,12 @@ class UsersServiceProvider extends BaseServiceProvider {
                 __DIR__ . '/../../config/config.php' => config_path('nukacode-user.php')
             ], 'config'
         );
+        //@todo - Add config in nukacode/configs to handle setting this in the RouteProvider
+        $this->publishes(
+            [
+                __DIR__ . '/../auth.php' => app_path('Http/Routes/Users/auth.php')
+            ], 'routes'
+        );
 
         $databaseFiles = $this->getDatabaseFiles('vendor/nukacode/users/src/database');
 
@@ -73,34 +77,6 @@ class UsersServiceProvider extends BaseServiceProvider {
         if ($this->app['config']->has('nukacode-frontend.type')) {
             $this->app['view']->addLocation(__DIR__ . '/../../views/' . $this->app['config']->get('nukacode-frontend.type'));
         }
-    }
-
-    /**
-     * Register aliases
-     *
-     * @return void
-     */
-    protected function registerAliases()
-    {
-        $aliases = [];
-
-        $appAliases = Config::get('core::nonCoreAliases');
-        $loader     = AliasLoader::getInstance();
-
-        foreach ($aliases as $alias => $class) {
-            if ($appAliases !== null) {
-                if (! in_array($alias, $appAliases)) {
-                    $loader->alias($alias, $class);
-                }
-            } else {
-                $loader->alias($alias, $class);
-            }
-        }
-    }
-
-    public function registerArtisanCommands()
-    {
-        $this->commands([]);
     }
 
     /**
