@@ -1,7 +1,7 @@
 <?php
 
 // Authentication
-Route::group(['namespace' => 'NukaCode\Users\Http\Controllers', 'middleware' => 'guest'], function () {
+Route::group(['middleware' => 'guest'], function () {
     if (config('nukacode-user.enable_social') == false) {
         Route::get('login', [
             'as'   => 'auth.login',
