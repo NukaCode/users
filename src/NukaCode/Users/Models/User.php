@@ -30,11 +30,14 @@ abstract class User extends BaseModel
     protected $fillable = [
         'username',
         'email',
-        'firstName',
-        'lastName',
-        'displayName',
+        'first_name',
+        'last_name',
+        'display_name',
+        'timezone',
         'location',
         'url',
+        'social_id',
+        'social_avatar',
     ];
 
     /**
