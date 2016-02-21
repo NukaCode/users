@@ -1,6 +1,6 @@
 <?php
 
-namespace NukaCode\Users\Controllers;
+namespace NukaCode\Users\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
 use App\Models\User;
