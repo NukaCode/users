@@ -15,8 +15,10 @@ class Registration extends BaseRequest
     public function rules()
     {
         return [
-            'email'    => 'required|email|unique:users,email',
-            'username' => 'required|unique:users,username',
+            'email'                 => 'required|email|unique:users,email',
+            'username'              => 'required|unique:users,username',
+            'password'              => 'required|confirmed',
+            'password_confirmation' => 'required',
         ];
     }
 
