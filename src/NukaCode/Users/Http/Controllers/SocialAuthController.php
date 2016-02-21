@@ -62,7 +62,7 @@ class SocialAuthController extends BaseController
         }
 
         auth()->login($user, $request->get('remember', false));
-        event(new UserLoggedIn(auth()->user()));
+        event(new UserLoggedIn($user));
 
         return redirect()
             ->intended('home')
@@ -93,7 +93,7 @@ class SocialAuthController extends BaseController
         $user = User::create($userDetails);
         $user->assignRole(config('nukacode-user.default'));
 
-        event(new UserRegistered(auth()->user()));
+        event(new UserRegistered($user));
 
         return $user;
     }
