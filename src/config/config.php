@@ -53,7 +53,7 @@ return [
     |
     */
 
-    'permission' => [
+    'permissions' => [
         [
             'name'  => 'administrate',
             'label' => 'Administrate',
