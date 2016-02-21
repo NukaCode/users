@@ -19,7 +19,7 @@ class SocialAuthController extends BaseController
     {
         parent::__construct();
 
-        list($driver, $scopes, $extras) = config('nukacode-user.social');
+        extract(config('nukacode-user.social'));
 
         $this->driver = $driver;
         $this->scopes = $scopes;
