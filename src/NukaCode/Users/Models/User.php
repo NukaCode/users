@@ -3,12 +3,18 @@
 namespace NukaCode\Users\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use NukaCode\Users\Traits\HasRoles;
 
-abstract class User extends BaseModel
+abstract class User extends BaseModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use HasRoles, SoftDeletes;
+    use Authenticatable, Authorizable, CanResetPassword, HasRoles, SoftDeletes;
 
     /**
      * Define the SQL table for this model

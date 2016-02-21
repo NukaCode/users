@@ -65,7 +65,7 @@ class SocialAuthController extends BaseController
         event(new UserLoggedIn($user));
 
         return redirect()
-            ->intended('home')
+            ->intended(route('home'))
             ->with('message', 'You have been logged in.');
     }
 
