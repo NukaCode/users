@@ -6,6 +6,8 @@ use App\Models\BaseModel;
 
 class Permission extends BaseModel
 {
+    public $table = 'acl_permission';
+
     /**
      * A permission can be applied to roles.
      *
@@ -13,6 +15,6 @@ class Permission extends BaseModel
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'acl_permission_role');
     }
 }

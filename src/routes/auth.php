@@ -38,7 +38,7 @@ Route::group(['middleware' => 'guest'], function () {
             'as'   => 'auth.login',
             'uses' => 'SocialAuthController@login',
         ]);
-        Route::post('callback', [
+        Route::get('callback', [
             'as'   => 'auth.callback',
             'uses' => 'SocialAuthController@callback',
         ]);
