@@ -44,6 +44,7 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
         'url',
         'social_id',
         'social_avatar',
+        'super_flag',
     ];
 
     /**
