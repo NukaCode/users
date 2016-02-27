@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
             [
                 'username'   => 'riddles',
                 'password'   => bcrypt('test'),
-                'first_name'  => 'Brandon',
-                'last_ame'   => 'Hyde',
+                'first_name' => 'Brandon',
+                'last_name'  => 'Hyde',
                 'email'      => 'riddles@dev-toolbox.com',
                 'timezone'   => 'US/Central',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -25,8 +25,8 @@ class UserSeeder extends Seeder
             [
                 'username'   => 'Stygian',
                 'password'   => bcrypt('test'),
-                'first_ame'  => 'Travis',
-                'last_ame'   => 'Blasingame',
+                'first_name' => 'Travis',
+                'last_name'  => 'Blasingame',
                 'email'      => 'stygian.warlock.v2@gmail.com',
                 'timezone'   => 'US/Central',
                 'created_at' => date('Y-m-d H:i:s'),
