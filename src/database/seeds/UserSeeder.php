@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'last_name'  => 'Hyde',
                 'email'      => 'riddles@dev-toolbox.com',
                 'timezone'   => 'US/Central',
+                'super_flag' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
                 'last_name'  => 'Blasingame',
                 'email'      => 'stygian.warlock.v2@gmail.com',
                 'timezone'   => 'US/Central',
+                'super_flag' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
             ],
         ];
