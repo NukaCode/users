@@ -53,4 +53,4 @@ Route::group(['middleware' => ['auth']], function () {
             'uses' => 'SocialAuthController@logout',
         ]);
     }
-})
+});
