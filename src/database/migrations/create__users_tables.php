@@ -27,6 +27,7 @@ class CreateUsersTables extends Migration
             $table->string('remember_token', 100)->nullable();
             $table->string('social_id')->index()->nullable();
             $table->string('social_avatar')->index()->nullable();
+            $table->boolean('super_flag')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
