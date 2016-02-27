@@ -11,10 +11,6 @@ Route::group(['middleware' => 'guest'], function () {
             'as'   => 'auth.login',
             'uses' => 'AuthController@handleLogin',
         ]);
-        Route::get('logout', [
-            'as'   => 'auth.logout',
-            'uses' => 'AuthController@logout',
-        ]);
 
         Route::get('register', [
             'as'   => 'auth.register',
@@ -42,9 +38,19 @@ Route::group(['middleware' => 'guest'], function () {
             'as'   => 'auth.callback',
             'uses' => 'SocialAuthController@callback',
         ]);
+    }
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    if (config('nukacode-user.enable_social') == false) {
+        Route::get('logout', [
+            'as'   => 'auth.logout',
+            'uses' => 'AuthController@logout',
+        ]);
+    } else {
         Route::get('logout', [
             'as'   => 'auth.logout',
             'uses' => 'SocialAuthController@logout',
         ]);
     }
-});
+})
