@@ -44,7 +44,7 @@ class AuthController extends BaseController
         }
 
         // Login failed
-        return redirect(route('login'))
+        return redirect(route('auth.login'))
             ->with('errors', ['Your username or password was incorrect.']);
     }
 
