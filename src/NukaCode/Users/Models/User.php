@@ -35,6 +35,7 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
 
     protected $fillable = [
         'username',
+        'password',
         'email',
         'first_name',
         'last_name',
