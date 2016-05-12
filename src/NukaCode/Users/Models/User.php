@@ -45,7 +45,6 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
         'url',
         'social_id',
         'social_avatar',
-        'super_flag',
     ];
 
     /**
@@ -70,6 +69,23 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
             return true;
         }
 
+        return false;
+    }
+
+    /**
+     * Grant a user global rights.
+     *
+     * @return mixed
+     */
+    public function makeSuperUser()
+    {
+        if (config('nukacode-user.allow_super_user') == true) {
+            $this->super_flag = 1;
+            $this->save();
+            
+            return true;
+        }
+        
         return false;
     }
 
