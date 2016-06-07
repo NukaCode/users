@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 
 class Permission extends BaseModel
 {
-    public $table = 'acl_permission';
+    public $table = 'acl_permissions';
 
     /**
      * A permission can be applied to roles.
