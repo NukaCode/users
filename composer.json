@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "nukacode/core": "~2.2"
+        "nukacode/core": "^3.0"
     },
     "autoload":    {
         "classmap": [
