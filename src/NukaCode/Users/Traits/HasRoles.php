@@ -21,10 +21,16 @@ trait HasRoles
      * Assign the given role to the user.
      *
      * @param  string $role
+     *
      * @return mixed
+     * @throws \Exception
      */
     public function assignRole($role)
     {
+        if (Role::count() === 0) {
+            throw new \Exception('No roles have been created.');
+        }
+
         return $this->roles()->save(
             Role::whereName($role)->firstOrFail()
         );

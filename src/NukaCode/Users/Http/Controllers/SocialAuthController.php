@@ -4,40 +4,49 @@ namespace NukaCode\Users\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use NukaCode\Users\Events\UserLoggedIn;
 use NukaCode\Users\Events\UserRegistered;
 
 class SocialAuthController extends BaseController
 {
+    /**
+     * @var array
+     */
+    protected $providers;
+
+    /**
+     * @var string
+     */
     protected $driver;
 
+    /**
+     * @var array
+     */
     protected $scopes;
 
+    /**
+     * @var array
+     */
     protected $extras;
 
     public function __construct()
     {
         parent::__construct();
 
-        extract(config('nukacode-user.social'));
-
-        $this->driver = $driver;
-        $this->scopes = $scopes;
-        $this->extras = $extras;
+        $this->providers = collect(config('nukacode-user.providers'))->keyBy('driver');
     }
 
     /**
      * Redirect the user to the social providers auth page.
      *
+     * @param null|string $provider
+     *
      * @return mixed
      */
-    public function login()
+    public function login($provider = null)
     {
-        if (is_null($this->driver)) {
-            throw new \InvalidArgumentException('You must set a social driver to use the social authenticating features.');
-        }
+        $this->getProviderDetails($provider);
 
         return Socialite::driver($this->driver)
                         ->scopes($this->scopes)
@@ -48,12 +57,14 @@ class SocialAuthController extends BaseController
     /**
      * Use the returned user to register (if needed) and login.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param null|string $provider
      *
      * @return mixed
      */
-    public function callback(Request $request)
+    public function callback($provider = null)
     {
+        $this->getProviderDetails($provider);
+
         $socialUser = Socialite::driver($this->driver)->user();
         $user       = User::where('email', $socialUser->getEmail())->first();
 
@@ -61,7 +72,11 @@ class SocialAuthController extends BaseController
             $user = $this->register($socialUser);
         }
 
-        auth()->login($user, $request->get('remember', false));
+        if (! $user->hasProvider($this->driver)) {
+            $user->addSocial($socialUser, $this->driver);
+        }
+
+        auth()->login($user, request('remember', false));
         event(new UserLoggedIn($user));
 
         return redirect()
@@ -79,19 +94,19 @@ class SocialAuthController extends BaseController
     private function register($socialUser)
     {
         $names = explode(' ', $socialUser->getName());
+        $username = is_null($socialUser->getNickname()) ? $socialUser->getEmail() : $socialUser->getNickname();
 
         $userDetails = [
-            'username'      => $socialUser->getNickname(),
+            'username'      => $username,
             'email'         => $socialUser->getEmail(),
-            'first_name'    => $names[0],
-            'last_name'     => $names[1],
-            'display_name'  => $socialUser->getNickname(),
-            'social_id'     => $socialUser->getId(),
-            'social_avatar' => $socialUser->getAvatar(),
+            'first_name'    => isset($names[0]) ? $names[0] : null,
+            'last_name'     => isset($names[1]) ? $names[1] : null,
+            'display_name'  => $username,
         ];
 
         $user = User::create($userDetails);
         $user->assignRole(config('nukacode-user.default'));
+        $user->addSocial($socialUser, $this->driver);
 
         event(new UserRegistered($user));
 
@@ -109,5 +124,29 @@ class SocialAuthController extends BaseController
 
         return redirect(route('home'))
             ->with('message', 'You have been logged out.');
+    }
+
+    /**
+     * Find the provider's driver, scopes and extras based on a given provider name.
+     *
+     * @param $provider
+     *
+     * @throws \Exception
+     */
+    private function getProviderDetails($provider)
+    {
+        if (empty($this->providers)) {
+            throw new \Exception('No Providers have been set in nukacode-user config.');
+        }
+
+        $provider = is_null($provider) ? $this->providers->first() : $this->providers->get($provider);
+
+        if (is_null($provider['driver'])) {
+            throw new \InvalidArgumentException('You must set a social driver to use the social authenticating features.');
+        }
+
+        $this->driver = $provider['driver'];
+        $this->scopes = $provider['scopes'];
+        $this->extras = $provider['extras'];
     }
 }

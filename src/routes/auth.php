@@ -30,11 +30,11 @@ Route::group(['middleware' => 'guest'], function () {
             'uses' => 'AuthController@handleForgotPassword',
         ]);
     } else {
-        Route::get('login', [
+        Route::get('login/{provider?}', [
             'as'   => 'auth.login',
             'uses' => 'SocialAuthController@login',
         ]);
-        Route::get('callback', [
+        Route::get('callback/{provider}', [
             'as'   => 'auth.callback',
             'uses' => 'SocialAuthController@callback',
         ]);

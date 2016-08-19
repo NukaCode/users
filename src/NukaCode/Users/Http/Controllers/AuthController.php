@@ -4,6 +4,7 @@ namespace NukaCode\Users\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use NukaCode\Users\Events\UserLoggedIn;
 use NukaCode\Users\Events\UserRegistered;
 use NukaCode\Users\Http\Requests\Login;
@@ -65,6 +66,8 @@ class AuthController extends BaseController
      */
     public function handleRegister(Registration $request)
     {
+        DB::beginTransaction();
+
         try {
             $user = User::create($request->all());
             $user->assignRole(config('nukacode-user.default'));
@@ -73,9 +76,13 @@ class AuthController extends BaseController
 
             event(new UserRegistered(auth()->user()));
         } catch (\Exception $exception) {
-            return redirect('auth.register')
+            DB::rollBack();
+
+            return redirect(route('auth.register'))
                 ->with('errors', $exception->getMessage());
         }
+
+        DB::commit();
 
         return redirect(route('home'))
             ->with('message', 'Your account has been created.');

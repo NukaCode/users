@@ -26,16 +26,14 @@ class AclSeeder extends Seeder {
 
     private function insertRoles()
     {
-
-        // Uncomment the below to wipe the table clean before populating
+        // Truncate the table each time.
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('acl_roles')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        // These are set in the config so the individual site can override the defaults when desired.
         $roles = config('nukacode-user.roles');
 
-        // Uncomment the below to run the seeder
+        // Add any data to the table.
         DB::table('acl_roles')->insert($roles);
     }
 

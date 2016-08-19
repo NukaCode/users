@@ -2,10 +2,9 @@
 
 namespace NukaCode\Users\Http\Requests;
 
-use Illuminate\Support\Facades\Auth;
-use NukaCode\Core\Http\Requests\BaseRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class Preference extends BaseRequest
+class Preference extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

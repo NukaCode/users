@@ -2,12 +2,10 @@
 
 namespace NukaCode\Users\Events;
 
-use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use NukaCode\Users\Models\User;
 
-class UserRegistered extends Event
+class UserRegistered
 {
     use SerializesModels;
 

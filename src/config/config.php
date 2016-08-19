@@ -1,6 +1,17 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Load Views
+    |--------------------------------------------------------------------------
+    |
+    | NukaCode Users comes with some default bootstrap 3 view files to make
+    | getting started quicker.  If you don't want these to load, set
+    | this value to false.
+    |
+    */
+    'load_views'        => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -25,10 +36,12 @@ return [
     |
     */
     'enable_social'     => false,
-    'social'            => [
-        'driver' => null,
-        'scopes' => [],
-        'extras' => [],
+    'providers'         => [
+        [
+            'driver' => null,
+            'scopes' => [],
+            'extras' => [],
+        ],
     ],
 
     /*
@@ -41,7 +54,7 @@ return [
     | want to allow super users, set the below value to false.
     |
     */
-    'allow_super_users' => true,
+    'allow_super_users' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -76,5 +89,18 @@ return [
             'permission_id' => 1,
             'role_id'       => 2,
         ],
+    ],
+
+    'users' => [
+        //[
+        //    'username'   => 'admin',
+        //    'password'   => bcrypt('test'),
+        //    'first_name' => 'Admin',
+        //    'last_name'  => null,
+        //    'email'      => 'admin@example.com',
+        //    'timezone'   => 'US/Central',
+        //    'super_flag' => 1,
+        //    'roles'      => [2],
+        //],
     ],
 ];
