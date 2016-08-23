@@ -32,8 +32,6 @@ class SocialAuthController extends BaseController
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->providers = collect(config('users.providers'))->keyBy('driver');
     }
 
