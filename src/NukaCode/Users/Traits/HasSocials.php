@@ -9,10 +9,16 @@ trait HasSocials
 {
     public function addSocial(AbstractUser $socialUser, $provider)
     {
+        $refreshToken = isset($socialUser->refresh_token) && $socialUser->refresh_token
+            ? $socialUser->refresh_token
+            : null;
+
         $this->socials()->create([
-            'provider'  => $provider,
-            'social_id' => $socialUser->getId(),
-            'avatar'    => $socialUser->getAvatar(),
+            'provider'      => $provider,
+            'social_id'     => $socialUser->getId(),
+            'avatar'        => $socialUser->getAvatar(),
+            'token'         => $socialUser->token,
+            'refresh_token' => $refreshToken,
         ]);
     }
 

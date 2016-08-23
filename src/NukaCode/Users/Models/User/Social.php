@@ -13,6 +13,8 @@ class Social extends BaseModel
         'provider',
         'social_id',
         'avatar',
+        'token',
+        'refresh_token',
     ];
 
     public function user()

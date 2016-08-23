@@ -3,6 +3,7 @@
 namespace NukaCode\Users\Events;
 
 use Illuminate\Queue\SerializesModels;
+use Laravel\Socialite\AbstractUser;
 use NukaCode\Users\Models\User;
 
 class UserLoggedIn
@@ -15,18 +16,19 @@ class UserLoggedIn
     public $user;
 
     /**
-     * @var array
+     * @var \Laravel\Socialite\AbstractUser
      */
-    public $request;
+    public $socialUser;
 
     /**
      * Create a new event instance.
      *
-     * @param \NukaCode\Users\Models\User $user
+     * @param \NukaCode\Users\Models\User     $user
+     * @param \Laravel\Socialite\AbstractUser $socialUser
      */
-    public function __construct(User $user)
+    public function __construct(User $user, AbstractUser $socialUser)
     {
-        $this->user    = $user;
-        $this->request = request()->all();
+        $this->user       = $user;
+        $this->socialUser = $socialUser;
     }
 }

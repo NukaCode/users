@@ -75,7 +75,7 @@ class SocialAuthController extends BaseController
         }
 
         auth()->login($user, request('remember', false));
-        event(new UserLoggedIn($user));
+        event(new UserLoggedIn($user, $socialUser));
 
         return redirect()
             ->intended(route('home'))
