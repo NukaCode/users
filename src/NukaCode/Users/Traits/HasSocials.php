@@ -5,13 +5,6 @@ namespace NukaCode\Users\Traits;
 use Laravel\Socialite\AbstractUser;
 use NukaCode\Users\Models\User\Social;
 
-/**
- * Class HasSocials
- *
- * @package NukaCode\Users\Traits
- *
- * @method getProvider($provider)
- */
 trait HasSocials
 {
     public function addSocial(AbstractUser $socialUser, $provider)
@@ -29,9 +22,9 @@ trait HasSocials
         ]);
     }
 
-    public function scopeGetProvider($query, $provider)
+    public function getProvider($provider)
     {
-        return $query->socials()->where('provider', $provider)->first();
+        return $this->socials()->where('provider', $provider)->first();
     }
 
     public function hasProvider($provider)
