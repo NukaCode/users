@@ -15,10 +15,18 @@ class UserLoggedIn
     public $user;
 
     /**
+     * @var array
+     */
+    public $request;
+
+    /**
      * Create a new event instance.
+     *
+     * @param \NukaCode\Users\Models\User $user
      */
     public function __construct(User $user)
     {
-        $this->user = $user;
+        $this->user    = $user;
+        $this->request = request()->all();
     }
 }
