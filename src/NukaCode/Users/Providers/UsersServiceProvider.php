@@ -20,7 +20,7 @@ class UsersServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../../config/config.php', 'nukacode-user');
+        $this->mergeConfigFrom(__DIR__ . '/../../../config/config.php', 'users');
     }
 
     /**
@@ -43,7 +43,7 @@ class UsersServiceProvider extends ServiceProvider
     protected function loadConfigs()
     {
         $this->publishes([
-            __DIR__ . '/../../../config/config.php' => config_path('nukacode-user.php'),
+            __DIR__ . '/../../../config/config.php' => config_path('users.php'),
         ]);
     }
 
@@ -56,7 +56,7 @@ class UsersServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . '/../../../database/migrations');
 
-        if ($this->app['config']->get('nukacode-user.enable_social')) {
+        if ($this->app['config']->get('users.enable_social')) {
             $this->loadMigrationsFrom(__DIR__ . '/../../../database/social_migrations');
         }
     }
@@ -68,7 +68,7 @@ class UsersServiceProvider extends ServiceProvider
      */
     protected function loadViews()
     {
-        if ($this->app['config']->get('nukacode-user.load_views')) {
+        if ($this->app['config']->get('users.load_views')) {
             $this->app['view']->addLocation(__DIR__ . '/../../../views');
         }
     }

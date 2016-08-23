@@ -12,7 +12,7 @@ class NukaCodeUserSeeder extends Seeder
         DB::table('users')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $users = config('nukacode-user.users');
+        $users = config('users.users');
 
         // Add any data to the table.
         DB::table('users')->insert($users);

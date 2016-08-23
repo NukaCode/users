@@ -70,7 +70,7 @@ class AuthController extends BaseController
 
         try {
             $user = User::create($request->all());
-            $user->assignRole(config('nukacode-user.default'));
+            $user->assignRole(config('users.default'));
 
             auth()->login($user);
 

@@ -34,7 +34,7 @@ class SocialAuthController extends BaseController
     {
         parent::__construct();
 
-        $this->providers = collect(config('nukacode-user.providers'))->keyBy('driver');
+        $this->providers = collect(config('users.providers'))->keyBy('driver');
     }
 
     /**
@@ -105,7 +105,7 @@ class SocialAuthController extends BaseController
         ];
 
         $user = User::create($userDetails);
-        $user->assignRole(config('nukacode-user.default'));
+        $user->assignRole(config('users.default'));
         $user->addSocial($socialUser, $this->driver);
 
         event(new UserRegistered($user));
@@ -136,7 +136,7 @@ class SocialAuthController extends BaseController
     private function getProviderDetails($provider)
     {
         if (empty($this->providers)) {
-            throw new \Exception('No Providers have been set in nukacode-user config.');
+            throw new \Exception('No Providers have been set in users config.');
         }
 
         $provider = is_null($provider) ? $this->providers->first() : $this->providers->get($provider);

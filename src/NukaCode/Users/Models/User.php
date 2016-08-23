@@ -63,7 +63,7 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
      */
     public function isSuperUser()
     {
-        if (config('nukacode-user.allow_super_user') == true
+        if (config('users.allow_super_user') == true
             && $this->super_flag == 1
         ) {
             return true;
@@ -79,7 +79,7 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
      */
     public function makeSuperUser()
     {
-        if (config('nukacode-user.allow_super_user') == true) {
+        if (config('users.allow_super_user') == true) {
             $this->super_flag = 1;
             $this->save();
             

@@ -25,7 +25,7 @@ class RegistrationService {
 
         if ($result) {
             // Assign the guest role
-            $this->user->addRole($this->config->get('nukacode-user.main.guest'));
+            $this->user->addRole($this->config->get('users.main.guest'));
 
             // Log the user in
             $this->auth->login($this->user->getEntity());

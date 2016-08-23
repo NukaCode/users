@@ -24,7 +24,7 @@ Once that is done, you can publish the configs.
 
 `php artisan vendor:publish --provider="NukaCode\Users\Providers\UsersServiceProvider"`
 
-This will create a nukacode-user.php in your config folder.
+This will create a users.php in your config folder.
 
 > Make sure to make any changes you need to the config before continuing.  It will determine what roles are
 generated when you run the AclSeeder.  If you do not, you will get an error when registering.
@@ -37,7 +37,7 @@ The migration files for users are easily loadable once you have added the servic
 This will create the users table and all of the acl tables needed for permissions.
 
 ## Seeds
-Before you do anything, make sure you update `config/nukacode-user.php` and set your required permissions, roles and 
+Before you do anything, make sure you update `config/users.php` and set your required permissions, roles and 
 default users.
 
 ```

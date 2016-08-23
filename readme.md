@@ -6,4 +6,4 @@
 [![License](https://poser.pugx.org/nukacode/users/license.svg)](https://packagist.org/packages/nukacode/users)
 
 # Documentation
-See the documentation [in the docs](/docs) or at [NukaCode Docs](http://docs.nukacode.com/users).
+See the documentation [in the docs](/docs) or at [NukaCode Docs](http://docs.nukacode.com/master/users).

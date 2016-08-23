@@ -2,7 +2,7 @@
 
 // Authentication
 Route::group(['middleware' => 'guest'], function () {
-    if (config('nukacode-user.enable_social') == false) {
+    if (config('users.enable_social') == false) {
         Route::get('login', [
             'as'   => 'auth.login',
             'uses' => 'AuthController@login',
@@ -42,7 +42,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    if (config('nukacode-user.enable_social') == false) {
+    if (config('users.enable_social') == false) {
         Route::get('logout', [
             'as'   => 'auth.logout',
             'uses' => 'AuthController@logout',

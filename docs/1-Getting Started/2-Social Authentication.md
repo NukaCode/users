@@ -30,7 +30,7 @@ provided by Socialite Providers will require extra steps.  Make sure to read tha
 
 ## Database
 By default, this package wont install any social tables in the database until you set `enable_social` to `true` in your 
-`config/nukacode-user.php`.  If you enable this after running the initial migrations, its not a problem, just 
+`config/users.php`.  If you enable this after running the initial migrations, its not a problem, just 
 set it to true and then run `php artisan migrate` and it will now add them.
 
 > Running the social migration also sets the password field on the `users` table to nullable.
@@ -49,7 +49,7 @@ user model.
 
 # How To Use It
 
-1. Add the driver(s) to `config/nukacode-user.php` in the `providers` array.
+1. Add the driver(s) to `config/users.php` in the `providers` array.
     * You can add any scopes you need or any extra details here as well.
     * Do this for all providers you want to allow.
 2. Add a link for the user to log into this provider.

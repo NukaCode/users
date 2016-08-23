@@ -18,7 +18,7 @@ class AclSeeder extends Seeder {
         DB::table('acl_permissions')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $permissions = config('nukacode-user.permissions');
+        $permissions = config('users.permissions');
 
         // Add any data to the table.
         DB::table('acl_permissions')->insert($permissions);
@@ -31,7 +31,7 @@ class AclSeeder extends Seeder {
         DB::table('acl_roles')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $roles = config('nukacode-user.roles');
+        $roles = config('users.roles');
 
         // Add any data to the table.
         DB::table('acl_roles')->insert($roles);
@@ -44,7 +44,7 @@ class AclSeeder extends Seeder {
         DB::table('acl_permission_role')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $permissions = config('nukacode-user.permission_role');
+        $permissions = config('users.permission_role');
 
         // Add any data to the table.
         DB::table('acl_permission_role')->insert($permissions);
