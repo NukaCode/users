@@ -78,7 +78,8 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
     public function makeSuperUser()
     {
         if (config('users.allow_super_user') == true) {
-            $this->update(['super_flag' => 1]);
+            $this->super_flag = 1;
+            $this->save();
 
             return true;
         }
