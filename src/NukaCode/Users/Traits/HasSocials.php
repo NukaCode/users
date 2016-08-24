@@ -9,8 +9,8 @@ trait HasSocials
 {
     public function addSocial(AbstractUser $socialUser, $provider)
     {
-        $refreshToken = isset($socialUser->refresh_token) && $socialUser->refresh_token
-            ? $socialUser->refresh_token
+        $refreshToken = isset($socialUser->refreshToken) && $socialUser->refreshToken
+            ? $socialUser->refreshToken
             : null;
 
         $this->socials()->create([
