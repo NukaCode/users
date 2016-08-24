@@ -43,8 +43,6 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
         'timezone',
         'location',
         'url',
-        'social_id',
-        'social_avatar',
     ];
 
     /**
@@ -80,9 +78,8 @@ abstract class User extends BaseModel implements AuthenticatableContract, Author
     public function makeSuperUser()
     {
         if (config('users.allow_super_user') == true) {
-            $this->super_flag = 1;
-            $this->save();
-            
+            $this->update(['super_flag' => 1]);
+
             return true;
         }
         
