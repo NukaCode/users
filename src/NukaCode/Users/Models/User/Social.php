@@ -3,6 +3,7 @@
 namespace NukaCode\Users\Models\User;
 
 use App\Models\BaseModel;
+use Laravel\Socialite\AbstractUser;
 
 class Social extends BaseModel
 {
