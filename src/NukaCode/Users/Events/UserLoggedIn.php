@@ -16,17 +16,17 @@ class UserLoggedIn
     public $user;
 
     /**
-     * @var \Laravel\Socialite\AbstractUser
+     * @var \Laravel\Socialite\AbstractUser|null
      */
     public $socialUser;
 
     /**
      * Create a new event instance.
      *
-     * @param \NukaCode\Users\Models\User     $user
-     * @param \Laravel\Socialite\AbstractUser $socialUser
+     * @param \NukaCode\Users\Models\User          $user
+     * @param \Laravel\Socialite\AbstractUser|null $socialUser
      */
-    public function __construct(User $user, AbstractUser $socialUser)
+    public function __construct(User $user, AbstractUser $socialUser = null)
     {
         $this->user       = $user;
         $this->socialUser = $socialUser;
