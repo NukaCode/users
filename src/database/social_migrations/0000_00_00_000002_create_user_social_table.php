@@ -21,6 +21,7 @@ class CreateUserSocialTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('token');
             $table->string('refresh_token')->nullable();
+            $table->integer('expires_in')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

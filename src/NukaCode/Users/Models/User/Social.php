@@ -15,6 +15,7 @@ class Social extends BaseModel
         'avatar',
         'token',
         'refresh_token',
+        'expires_in'
     ];
 
     public function user()
