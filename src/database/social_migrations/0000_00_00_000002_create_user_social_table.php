@@ -18,6 +18,7 @@ class CreateUserSocialTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('provider');
             $table->string('social_id')->index();
+            $table->string('email')->index()->nullable();
             $table->string('avatar')->nullable();
             $table->string('token');
             $table->string('refresh_token')->nullable();

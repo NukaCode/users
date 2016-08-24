@@ -16,6 +16,7 @@ trait HasSocials
         $this->socials()->create([
             'provider'      => $provider,
             'social_id'     => $socialUser->getId(),
+            'email'         => $socialUser->getEmail(),
             'avatar'        => $socialUser->getAvatar(),
             'token'         => $socialUser->token,
             'refresh_token' => $refreshToken,

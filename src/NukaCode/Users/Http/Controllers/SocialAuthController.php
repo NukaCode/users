@@ -7,6 +7,7 @@ use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use NukaCode\Users\Events\UserLoggedIn;
 use NukaCode\Users\Events\UserRegistered;
+use NukaCode\Users\Models\User\Social;
 
 class SocialAuthController extends BaseController
 {
@@ -64,7 +65,10 @@ class SocialAuthController extends BaseController
         $this->getProviderDetails($provider);
 
         $socialUser = Socialite::driver($this->driver)->user();
-        $user       = User::where('email', $socialUser->getEmail())->first();
+        $user       = User::where('email', $socialUser->getEmail())
+                          ->orWhereHas('socials', function ($query) use ($socialUser) {
+                              $query->where('email', $socialUser->getEmail())->where('provider', $this->driver);
+                          })->first();
 
         if (is_null($user)) {
             $user = $this->register($socialUser);
@@ -72,6 +76,8 @@ class SocialAuthController extends BaseController
 
         if (! $user->hasProvider($this->driver)) {
             $user->addSocial($socialUser, $this->driver);
+        } else {
+            $user->getProvider($this->driver)->updateFromProvider($socialUser, $this->driver);
         }
 
         auth()->login($user, request('remember', false));
@@ -91,15 +97,15 @@ class SocialAuthController extends BaseController
      */
     private function register($socialUser)
     {
-        $names = explode(' ', $socialUser->getName());
+        $names    = explode(' ', $socialUser->getName());
         $username = is_null($socialUser->getNickname()) ? $socialUser->getEmail() : $socialUser->getNickname();
 
         $userDetails = [
-            'username'      => $username,
-            'email'         => $socialUser->getEmail(),
-            'first_name'    => isset($names[0]) ? $names[0] : null,
-            'last_name'     => isset($names[1]) ? $names[1] : null,
-            'display_name'  => $username,
+            'username'     => $username,
+            'email'        => $socialUser->getEmail(),
+            'first_name'   => isset($names[0]) ? $names[0] : null,
+            'last_name'    => isset($names[1]) ? $names[1] : null,
+            'display_name' => $username,
         ];
 
         $user = User::create($userDetails);
