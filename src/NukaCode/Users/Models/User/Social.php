@@ -27,7 +27,7 @@ class Social extends BaseModel
             : null;
 
         $attributes = [
-            'user_id'       => $this->id,
+            'user_id'       => $this->user_id,
             'provider'      => $provider,
             'social_id'     => $socialUser->getId(),
             'email'         => $socialUser->getEmail(),
