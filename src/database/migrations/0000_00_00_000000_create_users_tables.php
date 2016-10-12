@@ -21,7 +21,7 @@ class CreateUsersTables extends Migration
             $table->string('first_name')->index()->nullable();
             $table->string('last_name')->index()->nullable();
             $table->string('display_name')->index()->nullable();
-            $table->string('timezone')->default('GMT');
+            $table->string('timezone')->default('Europe/London');
             $table->string('location')->nullable();
             $table->string('url')->nullable();
             $table->string('remember_token', 100)->nullable();
