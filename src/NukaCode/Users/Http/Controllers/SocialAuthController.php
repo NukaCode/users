@@ -67,7 +67,7 @@ class SocialAuthController extends BaseController
         $socialUser = Socialite::driver($this->driver)->user();
         $user       = User::where('email', $socialUser->getEmail())
                           ->orWhereHas('socials', function ($query) use ($socialUser) {
-                              $query->where('email', $socialUser->getEmail())->where('provider', $this->driver);
+                              $query->where('user_socials.email', $socialUser->getEmail())->where('provider', $this->driver);
                           })->first();
 
         if (is_null($user)) {

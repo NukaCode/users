@@ -31,7 +31,7 @@ return [
     |
     | If using social authentication, specify the driver being used here.  You
     | can also specify any additional scopes or extras you need here.
-    | Setting the enable_Social flag to true will change the existing routes
+    | Setting the enable_social flag to true will change the existing routes
     | to their social counterparts.
     |
     */

@@ -70,7 +70,7 @@ file.
 ```php
     protected $routeMiddleware = [
         ...
-        'acl'        => \App\Http\Middleware\CheckPermission::class,
+        'acl'        => \NukaCode\Users\Http\Middleware\CheckPermission::class,
     ];
 ```
 
